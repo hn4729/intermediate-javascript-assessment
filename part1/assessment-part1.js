@@ -7,20 +7,20 @@
 
 // Given the following nested functions:
 
-function daBears(){
+function daBears() {
   var isFurry = true;
 
-  function papaBear (){
+  function papaBear() {
     var porridge = "Too Hot!";
     var chair = "Too Big!";
     var bed = "Too Hard!";
     var feeling = "Angry";
 
-    function mamaBear(){
+    function mamaBear() {
       var porridge = "Too Cold!";
       var bed = "Too Soft!";
 
-      function babyBear(){
+      function babyBear() {
         var porridge = "Just right!";
         var chair = "Just right!";
         var bed = "Just right!";
@@ -30,7 +30,7 @@ function daBears(){
     }
   }
 
-  function goldilocks(){
+  function goldilocks() {
     var feeling = "Hungry";
     var isFurry = false;
     var isDinner = true;
@@ -43,28 +43,27 @@ function daBears(){
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "papaBear", "mamaBear", "goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
-
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
 // *************
 // * PROBLEM 2 *
@@ -83,16 +82,25 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+function Vehicle() {
+  this.gasRemaining = 100;
+}
 
+Vehicle.prototype.drive = function() {
+  this.gasRemaining -= 25;
+};
 
+let charger = new Vehicle();
+let mustang = new Vehicle();
 
-
+charger.drive();
+mustang.drive();
+mustang.drive();
 // -----------------------------------------------------------------------------
 
 // *************
 // * PROBLEM 3 *
 // *************
-
 
 // For this problem, you will need to add a method to the String prototype named
 // "grammarPolice".  When called on a string, "grammarPolice" will return a new string
@@ -104,12 +112,13 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // Your method may be passed punctuation, numbers or other non-letter characters
 // and should neither modify them nor break when encountering them.
 
-
-
-
-// CODE HERE...
-
-
+String.prototype.grammarPolice = function(str) {
+  return this.split(" ")
+    .map(word => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+};
 
 // *************
 // * PROBLEM 4 *
@@ -125,9 +134,15 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // In all other cases, return "Different values"
 
-// CODE HERE...
-
-
+function valueType(argOne, argTwo) {
+  if (argOne === argTwo) {
+    return "Exactly the same";
+  } else if (argOne == argTwo) {
+    return "Same value, different types";
+  } else {
+    return "Different values";
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -140,4 +155,7 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 var theAnswer = "Unknown";
 
-// CODE HERE...
+function promiseCatcher(promise) {
+  console.log(promise);
+  promise.then(res => (theAnswer = res));
+}
